@@ -1,0 +1,55 @@
+systemAtari - 5200
+systemAtari - 7800
+systemAtari - Jaguar
+systemAtari - Lynx
+systemAtari - ST
+systemBandai - WonderSwan
+systemBandai - WonderSwan Color
+systemCasio - Loopy
+systemCasio - PV-1000
+systemColeco - ColecoVision
+systemCommodore - 64
+systemUnknown0
+systemUnknown1
+systemCommodore - Amiga
+systemCommodore - Plus-4
+systemCommodore - VIC-20
+systemEmerson - Arcadia 2001
+systemEntex - Adventure Vision
+systemEpoch - Super Cassette Vision
+systemFairchild - Channel F
+systemFuntech - Super Acan
+systemGamePark - GP32
+systemGCE - Vectrex
+systemHartung - Game Master
+systemMagnavox - Odyssey2
+systemNEC - PC Engine - TurboGrafx 16
+systemNEC - Super Grafx
+systemNintendo - Famicom Disk System
+systemNintendo - Game Boy
+systemNintendo - Game Boy Advance
+systemUnknown2
+systemNintendo - Game Boy Color
+systemNintendo - Nintendo 64
+systemNintendo - Nintendo DS
+systemNintendo - Nintendo DSi
+systemNintendo - Nintendo Entertainment System
+systemNintendo - Satellaview
+systemNintendo - Sufami Turbo
+systemNintendo - Super Nintendo Entertainment System
+systemNintendo - Virtual Boy
+systemPhilips - Videopac+
+systemRCA - Studio II
+systemSega - 32X
+systemSega - Game Gear
+systemSega - Master System - Mark III
+systemSega - Mega Drive - Genesis
+systemSega - PICO
+systemSega - SG-1000
+systemSinclair - ZX Spectrum +3
+systemSNK - Neo Geo Pocket
+systemSNK - Neo Geo Pocket Color
+systemTiger - Game.com
+systemVTech - CreatiVision
+systemVTech - V.Smile
+systemWatara - Supervision
