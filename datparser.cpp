@@ -5,18 +5,12 @@
 #include <QDirIterator>
 #include <QJsonArray>
 
-DatParser::DatParser(const QString file, DatParser::Key key)
+DatParser::DatParser(const QString file)
     : unknown_doc_key_increment{0}
 {
-    setObjectKey(key);
     setExportPath(file);
+    setDelimiters(QString("*.dat"));
     setExportFile("nointrodb.json");
-
-    auto str_list = getFiles(file);
-    for (auto &dat : str_list)
-        parse(dat);
-    json_doc.setObject(json_object);
-
 }
 
 DatParser::~DatParser()
@@ -26,6 +20,14 @@ DatParser::~DatParser()
 void DatParser::setObjectKey(const DatParser::Key key)
 {
     object_key = key;
+}
+
+void DatParser::parse()
+{
+    auto str_list = getFiles(exportInfo().absoluteFilePath());
+    for (auto &dat : str_list)
+        parse(dat);
+    json_doc.setObject(json_object);
 }
 
 void DatParser::parse(const QString file)
@@ -131,19 +133,7 @@ void DatParser::parse(const QString file)
 
 }
 
-QStringList DatParser::getFiles(const QString file)
-{
-    qDebug() << "Dir exists? " << QDir(file).exists();
 
-    QStringList list;
-    QDirIterator iter(file, QStringList() << "*.dat", QDir::Files, QDirIterator::NoIteratorFlags);
-    //qDebug() << iter.filePath();
-    while (iter.hasNext()) {
-        list.append(iter.next());
-    }
-    return list;
-
-}
 
 QString DatParser::getKey(QStringList &list)
 {
@@ -212,22 +202,12 @@ QJsonDocument DatParser::toJsonDocument() const
     return json_doc;
 }
 
-void DatParser::setExportPath(const QString path)
-{
-    export_info.setFile(path);
-}
-
-void DatParser::setExportFile(const QString file)
-{
-    export_file = file;
-}
-
 bool DatParser::save()
 {
 
     if (!json_doc.isEmpty() && !json_doc.isNull()) {
 
-        QString path = export_info.absoluteFilePath() + "/" + export_file;
+        QString path = exportInfo().absoluteFilePath() + "/" + exportFile();
         QFile fopen(path);
 
         if (!fopen.open(QIODevice::WriteOnly)) {
@@ -237,7 +217,7 @@ bool DatParser::save()
         int status = fopen.write(json_doc.toJson(QJsonDocument::Indented));
         if (status == -1)
             return false;
-        qDebug() << export_file << " saved to " << export_info.absoluteFilePath();
+        qDebug() << exportFile() << " saved to " << exportInfo().absoluteFilePath();
         fopen.close();
         generateKeysFile();
 
@@ -252,7 +232,7 @@ bool DatParser::save()
 bool DatParser::generateKeysFile()
 {
     bool result = true;
-    QFile fopen(export_info.absoluteFilePath() + "/" + "nointrodb_keys.txt");
+    QFile fopen(exportInfo().absoluteFilePath() + "/" + "nointrodb_keys.txt");
 
     if (!fopen.open(QIODevice::Text | QIODevice::WriteOnly)) {
         qDebug() << "nointrodb_key.txt file could not be created. The json document may still be valid!";

@@ -10,7 +10,9 @@
 #include <QJsonArray>
 #include <QFileInfo>
 
-class DatParser
+#include "parser.h"
+
+class DatParser : public Parser
 {
 public:
 
@@ -20,18 +22,15 @@ public:
         MD5,
     };
 
-    DatParser(const QString file, DatParser::Key);
+    DatParser(const QString file);
     ~DatParser();
 
 
-
-    void parse(const QString file);
-    QStringList getFiles(const QString file);
+    void parse();
 
     QJsonDocument toJsonDocument() const;
     bool save();
-    void setExportPath(const QString path);
-    void setExportFile(const QString file);
+
     void setObjectKey(const DatParser::Key key);
 
 
@@ -41,11 +40,11 @@ private:
     QList<QStringList> getRomData(QString str);
     QString romValue(const QString &second_val, const QStringList &str_list, int i);
     bool generateKeysFile();
+    void parse(const QString file);
 
     QJsonDocument json_doc;
     QJsonObject json_object;
-    QFileInfo export_info;
-    QString export_file;
+
     unsigned object_key;
 
     unsigned unknown_doc_key_increment;

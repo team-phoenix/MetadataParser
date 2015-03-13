@@ -16,7 +16,14 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    datparser.cpp
+    datparser.cpp \
+    artworkscraper.cpp \
+    parser.cpp \
+    csvparser.cpp
 
 HEADERS += \
-    datparser.h
+    datparser.h \
+    artworkscraper.h \
+    utils.h \
+    parser.h \
+    csvparser.h
